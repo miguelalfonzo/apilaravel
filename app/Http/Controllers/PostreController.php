@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Postre;
-
+use DB;
 class PostreController extends Controller
 {
     /**
@@ -13,11 +13,20 @@ class PostreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function mostrar(){
+
+         return view('postre.index');
+    }
+
+
     public function index()
     {
         $recurso=Postre::all();
         if($recurso){
+            
             return response()->json($recurso);
+          
         }else{
             return response()->json(["user_message"=>"no se encontro el recurso"],400);
         }
@@ -31,7 +40,8 @@ class PostreController extends Controller
      */
     public function create()
     {
-        //
+        return view('postre.create');
+
     }
 
     /**
@@ -44,7 +54,7 @@ class PostreController extends Controller
     {
         try {
           $recurso=Postre::create($request->all());
-
+           
           return response()->json(["user_message"=>"creado satisfactoriamente"],200);
           
         } catch (\Exception $e) {
@@ -83,8 +93,9 @@ class PostreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $detalle=Postre::find($id);
+        return view('postre.edit',compact('detalle'));
     }
 
     /**

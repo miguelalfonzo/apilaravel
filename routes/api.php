@@ -17,5 +17,4 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-
-Route::resource('postres','PostreController');
+Route::resource("/postres","PostreController");

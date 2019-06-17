@@ -15,3 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/postres','PostreController@mostrar');
+Route::get('/postres/create','PostreController@create');
+Route::get('/postres/{id}/edit','PostreController@edit');
